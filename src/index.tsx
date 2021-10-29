@@ -3,11 +3,22 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import EventEmitter from 'events';
+
+
+let currency: number = 0;
+export const events = new EventEmitter()
+
+export const addCurrency = (amount: number) => {
+  currency += amount
+  events.emit('change-currency', currency)
+}
+export const getCurrency = () => currency;
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <div style={{width:'100%',height:'100%'}}>
+    <App/>
+  </div>,
   document.getElementById('root')
 );
 
